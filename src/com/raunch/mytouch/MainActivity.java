@@ -3,6 +3,7 @@ package com.raunch.mytouch;
 import java.util.ArrayList;
 
 import com.raunch.floatview.FloatLayout;
+import com.raunch.floatview.FloatViewUtils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,11 +31,6 @@ public class MainActivity extends Activity {
 	private TextView mMountTV;
 	private TextView mStatusTV;
 	
-	WindowManager mWindowManager;  
-    WindowManager.LayoutParams wmParams;  
-	
-	
-	
 	private final String TAG = "TouchTest";
 	
 
@@ -49,7 +45,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				createFloatView();
+				FloatViewUtils.createFloatView(MainActivity.this);
 			}
 		});
 
@@ -63,33 +59,7 @@ public class MainActivity extends Activity {
 
 	}
     
-    private void createFloatView()  
-    {  
-        //获取LayoutParams对象  
-        wmParams = new WindowManager.LayoutParams();  
-          
-        //获取的是LocalWindowManager对象  
-        mWindowManager = (WindowManager)getApplicationContext().getSystemService(Context.WINDOW_SERVICE); 
-        //mWindowManager = getWindow().getWindowManager();  
-       
-        wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;  
-        wmParams.format = PixelFormat.RGBA_8888;;  
-        wmParams.flags = WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-        //wmParams.flags = WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
-        //wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
-        wmParams.gravity = Gravity.CENTER; 
-        /* 
-        wmParams.width = WindowManager.LayoutParams.MATCH_PARENT;  
-        wmParams.height = WindowManager.LayoutParams.MATCH_PARENT;  
-        */
-        wmParams.width = 50;  
-        wmParams.height = 50; 
-        FloatLayout view = new FloatLayout(this);         
-          
-        mWindowManager.addView(view, wmParams);  
-        //setContentView(R.layout.main);       
-          
-    }  
+   
         
         
        

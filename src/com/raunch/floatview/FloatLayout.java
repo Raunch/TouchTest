@@ -25,8 +25,7 @@ public class FloatLayout extends LinearLayout{
 		mContext = context;
 		mFloatLayout = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.raunch_float_view, null);
 		mFloatButton = (Button) mFloatLayout.findViewById(R.id.float_button);
-		mFloatButton.setOnClickListener(new View.OnClickListener() {
-			
+		mFloatButton.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
 				Log.i(TAG,"You have Clicked me !");
