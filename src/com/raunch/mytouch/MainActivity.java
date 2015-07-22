@@ -2,7 +2,10 @@ package com.raunch.mytouch;
 
 import java.util.ArrayList;
 
+import com.raunch.floatview.FloatLayout;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
@@ -66,36 +69,22 @@ public class MainActivity extends Activity {
         wmParams = new WindowManager.LayoutParams();  
           
         //获取的是LocalWindowManager对象  
-        mWindowManager = this.getWindowManager();  
-        Log.i(TAG, "mWindowManager1--->" + this.getWindowManager());  
+        mWindowManager = (WindowManager)getApplicationContext().getSystemService(Context.WINDOW_SERVICE); 
         //mWindowManager = getWindow().getWindowManager();  
-        Log.i(TAG, "mWindowManager2--->" + getWindow().getWindowManager());  
        
-        //获取的是CompatModeWrapper对象  
-        //mWindowManager = (WindowManager) getApplication().getSystemService(Context.WINDOW_SERVICE);  
-        Log.i(TAG, "mWindowManager3--->" + mWindowManager);  
-        wmParams.type = LayoutParams.TYPE_APPLICATION;  
+        wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;  
         wmParams.format = PixelFormat.RGBA_8888;;  
-        wmParams.flags = LayoutParams.FLAG_NOT_FOCUSABLE;  
-        wmParams.gravity = Gravity.LEFT | Gravity.TOP;  
-        wmParams.x = 0;  
-        wmParams.y = 0;  
+        wmParams.flags = WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+        //wmParams.flags = WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+        //wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
+        wmParams.gravity = Gravity.CENTER; 
+        /* 
         wmParams.width = WindowManager.LayoutParams.MATCH_PARENT;  
         wmParams.height = WindowManager.LayoutParams.MATCH_PARENT;  
-        
-        ImageView view = new ImageView(this);
-        view.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.FILL_PARENT));
-        view.setOnTouchListener(new View.OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
-				Log.i(TAG,"fucking here");
-				return true;
-			}
-		});
-        view.setBackgroundColor(Color.TRANSPARENT);
-          
+        */
+        wmParams.width = 50;  
+        wmParams.height = 50; 
+        FloatLayout view = new FloatLayout(this);         
           
         mWindowManager.addView(view, wmParams);  
         //setContentView(R.layout.main);       
